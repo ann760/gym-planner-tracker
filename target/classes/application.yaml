@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: gym_plan
+    password: gym_plan
+    url: jdbc:mysql://localhost:3306/gym_plan
+    
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    defer-datasource-initialization: true
+    
+  sql:
+    init:
+      mode: always
