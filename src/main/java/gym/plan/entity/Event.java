@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Event {
 	private Long eventId;
 	
 	@EqualsAndHashCode.Exclude
+	@Column(unique = true)
 	private String eventName;
 	
 	@EqualsAndHashCode.Exclude

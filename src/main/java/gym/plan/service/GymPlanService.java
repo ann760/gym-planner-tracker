@@ -1,9 +1,12 @@
 package gym.plan.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +22,7 @@ public class GymPlanService {
 	@Transactional(readOnly = false)
 	public GymPlanData saveEvent(GymPlanData gymPlanData) {
 		Long eventId = gymPlanData.getEventId();
-		Event event = findOrCreateEvent(eventId);
+		Event event = findOrCreateEvent(eventId, gymPlanData.getEventName());
 		
 		setFieldsInEvent(event, gymPlanData);
 		return new GymPlanData(eventDao.save(event));
@@ -31,10 +34,17 @@ public class GymPlanService {
 		
 	}
 
-	private Event findOrCreateEvent(Long eventId) {
+	private Event findOrCreateEvent(Long eventId, String eventName) {
 		Event event;
 		
 		if(Objects.isNull(eventId)) {
+			Optional<Event> opEvent = eventDao.findByEventName(eventName);
+			
+			if(opEvent.isPresent()) {
+				throw new DuplicateKeyException("Event with name " + eventName + 
+						" already exists.");
+			}
+			
 			event = new Event();
 		}
 		else {
@@ -44,10 +54,25 @@ public class GymPlanService {
 	}
 
 	private Event findEventById(Long eventId) {
-		// TODO Auto-generated method stub
 		return eventDao.findById(eventId)
 			.orElseThrow(() -> new NoSuchElementException(
 				"Event with ID=" + eventId + " was not found."));
 	}
+
+	@Transactional(readOnly = true)
+	public List<GymPlanData> retrieveAllEvents() {
+		// @formatter:off
+		return eventDao.findAll()
+			.stream()
+			.map(cont -> new GymPlanData(cont))
+			.toList();
+		// @formatter:on
+	}
+
+	public GymPlanData retrieveEventById(Long eventId) {
+		Event event = findEventById(eventId);
+		return new GymPlanData(event);
+	}
+	
 
 }
