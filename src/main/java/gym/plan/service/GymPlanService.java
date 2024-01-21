@@ -69,9 +69,17 @@ public class GymPlanService {
 		// @formatter:on
 	}
 
+	@Transactional(readOnly = true)
 	public GymPlanData retrieveEventById(Long eventId) {
 		Event event = findEventById(eventId);
 		return new GymPlanData(event);
+	}
+
+	@Transactional(readOnly = false)
+	public void deleteEventById(Long eventId) {
+		Event event = findEventById(eventId);
+		eventDao.delete(event);
+		
 	}
 	
 
