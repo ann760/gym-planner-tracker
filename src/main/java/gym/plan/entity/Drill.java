@@ -22,7 +22,6 @@ public class Drill {
 	private String drillName;
 	private String drillDescription;
 	private String drillEquipment;
-	private String drillLevel;
 
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
