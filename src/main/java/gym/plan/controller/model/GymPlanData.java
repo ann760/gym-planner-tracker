@@ -18,15 +18,37 @@ public class GymPlanData {
 	private Set<SkillData> skills = new HashSet<>();
 	
 	public GymPlanData(Event event) {
-		eventId = event.getEventId();
-		eventName = event.getEventName();
-		eventDescription = event.getEventDescription();
+		this.eventId = event.getEventId();
+		this.eventName = event.getEventName();
+		this.eventDescription = event.getEventDescription();
 		
 		for(Skill skill : event.getSkills()) {
-			skills.add(new SkillData(skill));
+			this.skills.add(new SkillData(skill));
 		}
 	}
 	
+	public GymPlanData(Long eventId, String eventName,
+			  String eventDescription) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventDescription = eventDescription;
+	}
+		
+	public Event toEvent() {
+		Event event = new Event();
+		event.setEventId(eventId);
+		event.setEventName(eventName);
+		event.setEventDescription(eventDescription);
+			
+		for(SkillData skillData : skills) {
+			event.getSkills().add(skillData.toSkill());
+		}
+			
+			return event;
+		}
+	
+	
+//	--------------------------------------SkillData----------------------------
 	@Data
 	@NoArgsConstructor
 	public static class SkillData {
@@ -37,14 +59,27 @@ public class GymPlanData {
 		private Set<DrillData> drills = new HashSet<>();
 		
 		public SkillData(Skill skill) {
-			skillId = skill.getSkillId();
-			skillName = skill.getSkillName();
-			skillDescription = skill.getSkillDescription();
-			skillLevel = skill.getSkillLevel();
+			this.skillId = skill.getSkillId();
+			this.skillName = skill.getSkillName();
+			this.skillDescription = skill.getSkillDescription();
+			this.skillLevel = skill.getSkillLevel();
 			
 			for(Drill drill : skill.getDrills()) {
-				drills.add(new DrillData(drill));
+				this.drills.add(new DrillData(drill));
 			}
+		}
+		public Skill toSkill() {
+			Skill skill = new Skill();
+			
+			skill.setSkillId(skillId);
+			skill.setSkillName(skillName);
+			skill.setSkillDescription(skillDescription);
+			skill.setSkillLevel(skillLevel);
+			
+			for(DrillData drillData : drills) {
+				skill.getDrills().add(drillData.toDrill());
+			}
+			return skill;
 		}
 	}
 	
@@ -58,10 +93,20 @@ public class GymPlanData {
 		private int drillLevel;
 		
 		public DrillData(Drill drill){
-			drillId = drill.getDrillId();
-			drillName = drill.getDrillName();
-			drillDescription = drill.getDrillDescription();
-			drillEquipment = drill.getDrillEquipment();
+			this.drillId = drill.getDrillId();
+			this.drillName = drill.getDrillName();
+			this.drillDescription = drill.getDrillDescription();
+			this.drillEquipment = drill.getDrillEquipment();
+		}
+		public Drill toDrill() {
+			Drill drill = new Drill();
+			
+			drill.setDrillId(drillId);
+			drill.setDrillName(drillName);
+			drill.setDrillDescription(drillDescription);
+			drill.setDrillEquipment(drillEquipment);
+		
+			return drill;
 		}
 	}
 	
