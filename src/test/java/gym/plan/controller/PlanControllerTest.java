@@ -16,6 +16,7 @@ import gym.plan.controller.model.GymPlanData;
 @ActiveProfiles("test")
 //@Sql(scripts = {"classpath:schema.sql", "classpath:data.sql"})
 //@SqlConfig(encoding = "utf-8")
+
 class PlanControllerTest extends PlanServiceTestSupport {
 
 	@Test
@@ -25,10 +26,10 @@ class PlanControllerTest extends PlanServiceTestSupport {
 		GymPlanData expected = buildInsertEvent(1);
 		
 		//when: the request is added to the table
-		GymPlanData actural = insertEvent(request);
-		
+		GymPlanData actual = insertEvent(request);
+		System.out.println(actual);
 		//then: the request is what is expected
-		assertThat(actural).isEqualTo(expected);
+		assertThat(actual).isEqualTo(expected);
 		
 		//and: there is one row in the table.
 		assertThat(rowsInEventTable()).isOne();
@@ -71,10 +72,8 @@ class PlanControllerTest extends PlanServiceTestSupport {
 		//then: the request is returned as expected
 		assertThat(actual).isEqualTo(expected);
 		
-		//and: there is one row in the location table
-		assertThat(rowsInEventTable()).isOne();
-		
-		
+		//and: there is one row in the table
+		assertThat(rowsInEventTable()).isOne();	
 	}
 
 }
