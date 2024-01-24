@@ -143,13 +143,13 @@ public class GymPlanController {
 		return gymPlanService.retrieveAllDrill();
 	}
 	
-	@GetMapping("/skill/{skillId}")
+	@GetMapping("/drill/{drillId}")
 	public DrillData retrieveDrillById(@PathVariable Long drillId) {
 		log.info("Retrieving Drill with ID={}", drillId);
 		return gymPlanService.retrieveDrillById(drillId);
 	}
 	
-	@DeleteMapping("/skill")
+	@DeleteMapping("/drill")
 	public void deleteAllDrill() {
 		log.info("Attempting to delete all Drills");
 		throw new UnsupportedOperationException("Deleting all Drills is not allowed");
