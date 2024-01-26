@@ -57,6 +57,12 @@ public class GymPlanController {
 		return gymPlanService.retrieveEventById(eventId);
 	}
 	
+	@GetMapping("/event/{eventName}")
+	public GymPlanData retrieveEventByName(@PathVariable String eventName) {
+		log.info("Retrieving event name with ID={}", eventName);
+		return gymPlanService.retrieveEventByName(eventName);
+	}
+	
 	@DeleteMapping("/event")
 	public void deleteAllEvents() {
 		log.info("Attempting to delete all Events");

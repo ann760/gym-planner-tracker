@@ -46,8 +46,10 @@ public class PlanServiceTestSupport {
 		return which == 1 ? insertEvent1 : insertEvent2;
 	}
 	
-	protected int rowsInEventTable() {
-		return JdbcTestUtils.countRowsInTable(jdbcTemplate, EVENT_TABLE);
+	protected int rowsInEventTable(String eventName) {
+		return JdbcTestUtils.countRowsInTableWhere(
+				jdbcTemplate, EVENT_TABLE, 
+				eventName);
 	}
 
 	protected GymPlanData insertEvent(GymPlanData gymPlanData) {
@@ -58,14 +60,21 @@ public class PlanServiceTestSupport {
 		return gymPlanController.insertEvent(clone);
 	}
 	
-	protected GymPlanData retrieveEventById(Long eventId) {
-		return gymPlanController.retrieveEventById(eventId);
+	
+	protected GymPlanData retrieveEventByName(String eventName) {
+		return gymPlanController.retrieveEventByName(eventName);
 	}
 	
 	protected List<GymPlanData> insertTwoEvents() {
-		GymPlanData location1 = insertEvent(buildInsertEvent(1));
-		GymPlanData location2 = insertEvent(buildInsertEvent(2));
-		return List.of(location1, location2);
+		GymPlanData event1 = insertEvent(buildInsertEvent(1));
+		GymPlanData event2 = insertEvent(buildInsertEvent(2));
+		return List.of(event1, event2);
+	}
+	
+	protected List<GymPlanData> retrieveTwoEventByName() {
+		GymPlanData event1 = gymPlanController.retrieveEventByName("High Bar");
+		GymPlanData event2 = gymPlanController.retrieveEventByName("Parell Bars");
+		return List.of(event1, event2);
 	}
 	
 	protected List<GymPlanData> retrieveAllEvents() {

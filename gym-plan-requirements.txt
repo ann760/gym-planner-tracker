@@ -1,0 +1,58 @@
+Gymnastics Drill workout
+
+A a <role>, I want to <goal / task> so that <benefit>.
+
+As a user of the system, I want to add an Event
+Post /event
+
+As a user of the system, I want to update an Event
+Put /event/{eventId}
+
+As a user of the system, I want to retrieve a list of all the known or available achievements so I can view them.
+Get /events
+
+As a user of the system, I want to retrieve a selected achievement so that I can view the details.
+Get /events/{eventId}
+
+As a user of the system, I want to add a Skill
+Post /skill
+
+As a user of the system, I want to update a Skill
+Put /skill/{skillId}
+
+As a user of the system, I want to retrieve a list of all the known or available achievements so I can view them.
+Get /skills
+
+As a user of the system, I want to retrieve a selected achievement so that I can view the details.
+Get /skills/{skillId}
+
+As a user of the system, I want to add a Drill
+Post /drill
+
+As a user of the system, I want to update a Drill
+Put /drill/{drillId}
+
+As a user of the system, I want to retrieve a list of all the known or available drills so I can view them..
+Get /drills
+
+As a user of the system, I want to retrieve a selected drill so that I can view the details.
+Get /drills/{drillId}
+
+
+
+
+TO DO:
+As a user of the system, I want to add a Drill
+Post /client
+
+As a user of the system, I want to update a Drill
+Put /client/{clientId}
+
+As a user of the system, I want to retrieve a list of all the known or available altheletes so I can view them.
+Get /clients
+
+As a user of the system, I want to retrieve an althelete so that I can view their details.
+Get /clients/{clientID}
+
+As a user of the system, I want to choose an skill and recieve 3 random drills to reach the achievement goal.  
+post /workouts

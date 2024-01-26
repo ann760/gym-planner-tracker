@@ -68,6 +68,12 @@ public class GymPlanService {
 			.orElseThrow(() -> new NoSuchElementException(
 				"Event with ID=" + eventId + " was not found."));
 	}
+	
+	private Event findEventByName(String eventName) {
+		return eventDao.findByEventName(eventName)
+			.orElseThrow(() -> new NoSuchElementException(
+				"Event with ID=" + eventName + " was not found."));
+	}
 
 	@Transactional(readOnly = true)
 	public List<GymPlanData> retrieveAllEvents() {
@@ -82,6 +88,12 @@ public class GymPlanService {
 	@Transactional(readOnly = true)
 	public GymPlanData retrieveEventById(Long eventId) {
 		Event event = findEventById(eventId);
+		return new GymPlanData(event);
+	}
+	
+	@Transactional(readOnly = true)
+	public GymPlanData retrieveEventByName(String eventName) {
+		Event event = findEventByName(eventName);
 		return new GymPlanData(event);
 	}
 
