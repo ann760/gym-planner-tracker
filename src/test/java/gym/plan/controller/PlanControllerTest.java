@@ -26,7 +26,7 @@ class PlanControllerTest extends PlanServiceTestSupport {
 		// given: a request
 		GymPlanData expected = insertEvent(buildInsertEvent(1));
 		
-		// when: the request is retrieved by ID
+		// when: the request is retrieved by Name
 		GymPlanData actual = retrieveEventByName(expected.getEventName());
 		
 		// then: the actual request is equal to the expected request

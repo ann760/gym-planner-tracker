@@ -57,7 +57,7 @@ public class GymPlanController {
 		return gymPlanService.retrieveEventById(eventId);
 	}
 	
-	@GetMapping("/event/{eventName}")
+	@GetMapping("/eventName/{eventName}")
 	public GymPlanData retrieveEventByName(@PathVariable String eventName) {
 		log.info("Retrieving event name with ID={}", eventName);
 		return gymPlanService.retrieveEventByName(eventName);

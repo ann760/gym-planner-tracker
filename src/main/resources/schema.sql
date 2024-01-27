@@ -27,6 +27,7 @@ CREATE TABLE drill(
 	drill_id int NOT NULL AUTO_INCREMENT,
 	drill_name varchar(128) NOT NULL,
 	drill_description varchar(256) NOT NULL,
+	drill_equipment varchar(256),
 	PRIMARY KEY (drill_id)
 );
 
