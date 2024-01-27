@@ -1,0 +1,48 @@
+post event
+{
+	"eventName": "High Bar",
+	"eventDescription": "A 12 foot high bar on a steel frame"
+}
+
+put event
+{
+	"eventName": "High Bar",
+	"eventDescription": "A 13.5 foot high bar on a steel frame."
+}
+
+post skill
+{
+	"skillName": "Handstand",
+	"skillDescription": "kick to stand on hands.",
+	"skillLevel": "1"
+}
+put skill
+{
+	"skillName": "Handstand",
+	"skillDescription": "kick to stand on hands and hold for 3 seconds.",
+	"skillLevel": "1"
+}
+
+post drill
+{
+	"drillName": "Kick Lunge",
+	"drillDescription": "kick to lunge.",
+	"drillEquipment": "none",
+	"drillLevel": "2"
+}
+
+{
+	"drillName": "Kick Lunge Lever",
+	"drillDescription": "kick to lunge and lever down to place hands on the ground.",
+	"drillEquipment": "none",
+	"drillLevel": "1"
+}
+
+put drill
+{
+	"drillName": "Kick Lunge",
+	"drillDescription": "kick to lunge and hold tight.",
+	"drillEquipment": "none",
+	"drillLevel": "2"
+}
+
